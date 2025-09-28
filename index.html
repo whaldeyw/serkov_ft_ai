@@ -135,6 +135,43 @@
         justify-content: center;
         text-align: center;
         }
+         /* Адаптивность для мобильных */
+        @media (max-width: 768px) {
+            .work-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .hero-text {
+                font-size: 2.5rem;
+            }
+        }
+    
+        /* Адаптивность для планшетов */
+        @media (max-width: 1200px) {
+            .hero-image {
+                width: 90%;
+                height: auto;
+                max-width: 1100px;
+            }
+        }
+    
+        /* Адаптивность для мобильных */
+        @media (max-width: 768px) {
+            .hero-image {
+                width: 95%;
+                height: auto;
+            }
+        }
+    
+        /* Адаптивность для маленьких мобильных */
+        @media (max-width: 576px) {
+            .hero-image {
+                width: 100%;
+                height: auto;
+                padding: 0 10px;
+            }
+        }
         
     </style>
 </head>
@@ -150,9 +187,10 @@
 
     <!-- Главный заголовок -->
     <div class="container text-center py-4">
-           <img src="oblogka.png" alt="Песни на заказ" 
+          <img src="oblogka.png" alt="Песни на заказ" 
              class="hero-image mb-3"
-             style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+             width="1100" 
+             height="400">
         <p class="text-white mt-3 fs-5">Создаю уникальные музыкальные композиции специально для вас</p>
     </div>
 
