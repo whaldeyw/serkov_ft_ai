@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Песни на заказ</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Логотип */
+        .logo {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .logo {
+                height: 80px;
+            }
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Главный заголовок */
+        .hero-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-text {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+            to { text-shadow: 0 0 30px rgba(255,255,255,0.6), 0 0 40px rgba(255,255,255,0.4); }
+        }
+        
+        /* Карточки секций */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Примеры работ */
+        .work-sample {
+            transition: all 0.3s ease;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 100%;
+            background: #fff;
+        }
+        
+        .work-sample:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .work-image {
+            height: 140px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .work-sample:hover .work-image {
+            transform: scale(1.05);
+        }
+        
+        @media (min-width: 768px) {
+            .work-image {
+                height: 120px;
+            }
+        }
+        
+        /* Профильное изображение */
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #6c5ce7;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        
+        /* Контакты */
+        .contact-link {
+            color: #6c5ce7;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            word-break: break-all;
+        }
+        
+        .contact-link:hover {
+            color: #a29bfe;
+        }
+        
+        .social-icon {
+            font-size: 1.25rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Заголовки секций */
+        .section-title {
+            border-left: 5px solid;
+            padding-left: 15px;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        /* Кнопки */
+        .btn {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Отступы для мобильных */
+        .mobile-spacing {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-spacing {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+        }
+        
+        /* Улучшенная типографика для мобильных */
+        @media (max-width: 767px) {
+            .lead {
+                font-size: 1.1rem;
+            }
+            
+            h5 {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        
+        /* Анимации для улучшения UX */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Улучшенные карточки контактов */
+        .contact-card {
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с логотипом -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="Логотип Песни на заказ" class="logo">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Главный заголовок -->
+    <div class="container text-center py-4 py-md-5">
+        <h1 class="hero-text mb-3">🎵 ПЕСНИ НА ЗАКАЗ 🎶</h1>
+        <p class="text-white mt-3 fs-5 fs-md-4">Создаю уникальные музыкальные композиции специально для вас</p>
+    </div>
+
+    <div class="container">
+        <!-- Блок "Обо мне" -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="section-card p-3 p-md-4 mb-4 mb-md-5 fade-in">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
+                            <img src="oblozhka.png" alt="Мое фото" class="profile-image">
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <h2 class="section-title" style="border-color: #6c5ce7; color: #6c5ce7;">
+                                <i class="bi bi-person-circle me-2"></i>Обо мне
+                            </h2>
+                            <p class="lead mb-3">Привет! Я профессиональный композитор и автор песен с 10-летним опытом.</p>
+                            <p class="mb-3">Специализируюсь на создании уникальных музыкальных произведений в различных жанрах:</p>
+                            <div class="row">
+                                <div class="col-sm-6 mb-2">
+                                    <ul class="list-unstyled">
+                                        <li>🎸 Поп-музыка и рок</li>
+                                        <li>🎹 Электронная музыка</li>
+                                        <li>🎻 Романтические баллады</li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6 mb-2">
+                                    <ul class="list-unstyled">
+                                        <li>🎤 Хип-хоп и R&B</li>
+                                        <li>🎷 Джазовые композиции</li>
+                                        <li>🎼 Классическая музыка</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="mb-0">Каждая песня создается индивидуально, с учетом ваших пожеланий и эмоций.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Блок "Примеры работ" -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="section-card p-3 p-md-4 mb-4 mb-md-5 fade-in">
+                    <h2 class="section-title" style="border-color: #00b894; color: #00b894;">
+                        <i class="bi bi-music-note-list me-2"></i>Примеры работ
+                    </h2>
+                    <p class="lead mb-4">Послушайте мои последние работы в разных жанрах:</p>
+                    
+                    <div class="row g-3 g-md-4">
+                        <!-- Пример 1 -->
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="work-sample p-0 shadow-sm">
+                                <img src="petrosyan.jpg" alt="Петросян" class="work-image">
+                                <div class="p-3">
+                                    <h5 class="fw-bold">Петросян</h5>
+                                    <p class="text-muted small mb-2">Лирическая баллада</p>
+                                    <div class="d-grid">
+                                        <a href="https://vk.com/audio-231475186_456239066_21bbae2892e380c587" 
+                                           class="btn btn-primary btn-sm" 
+                                           target="_blank"
+                                           rel="noopener noreferrer">
+                                           <i class="bi bi-play-fill me-1"></i>Слушать
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Остальные примеры работ -->
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="work-sample p-0 shadow-sm">
+                                <img src="https://via.placeholder.com/400x160/fdcb6e/ffffff?text=Городские+огни" alt="Городские огни" class="work-image">
+                                <div class="p-3">
+                                    <h5 class="fw-bold">Городские огни</h5>
+                                    <p class="text-muted small mb-2">Электро-поп</p>
+                                    <div class="d-grid">
+                                        <a href="#" class="btn btn-primary btn-sm">
+                                            <i class="bi bi-play-fill me-1"></i>Слушать
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Добавьте остальные треки по аналогии -->
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="#" class="btn btn-outline-success btn-lg">
+                            <i class="bi bi-soundwave me-2"></i>Все работы на SoundCloud
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Контакты -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="section-card p-3 p-md-4 text-center fade-in">
+                    <h2 class="section-title mx-auto" style="border-color: #fd79a8; color: #fd79a8; width: fit-content;">
+                        <i class="bi bi-telephone me-2"></i>Контакты
+                    </h2>
+                    <p class="lead mb-4">Свяжитесь со мной для обсуждения вашего проекта</p>
+                    
+                    <div class="row justify-content-center g-3">
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="contact-card">
+                                <h5><i class="bi bi-envelope me-2"></i>Email</h5>
+                                <a href="mailto:music@example.com" class="contact-link fs-6 fs-md-5">music@example.com</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="contact-card">
+                                <h5><i class="bi bi-phone me-2"></i>Телефон</h5>
+                                <a href="tel:+79161234567" class="contact-link fs-6 fs-md-5">+7 (916) 123-45-67</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="contact-card">
+                                <h5><i class="bi bi-share me-2"></i>Соцсети</h5>
+                                <div class="mt-2">
+                                    <a href="#" class="contact-link social-icon" title="VK"><i class="bi bi-vimeo"></i></a>
+                                    <a href="#" class="contact-link social-icon" title="Instagram"><i class="bi bi-instagram"></i></a>
+                                    <a href="#" class="contact-link social-icon" title="Telegram"><i class="bi bi-telegram"></i></a>
+                                    <a href="#" class="contact-link social-icon" title="SoundCloud"><i class="bi bi-spotify"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <img src="https://via.placeholder.com/600x120/6c5ce7/ffffff?text=Создадим+уникальную+песню+вместе" 
+                             alt="Свяжитесь со мной" 
+                             class="img-fluid rounded">
+                    </div>
+                    <p class="mt-4 text-muted fs-6 fs-md-5">Готов обсудить ваш проект в удобное для вас время!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="text-center text-white py-4 mt-4 mt-md-5">
+        <div class="container">
+            <img src="logo.png" alt="Логотип" class="mb-2" style="height: 30px;">
+            <p class="mb-0">© 2024 Песни на заказ. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+<h1 class="hero-text">🎵 ПЕСНИ НА ЗАКАЗ 🎶</h1>
+
+
+
+    <div class="container">
+        <!-- Блок "Обо мне" -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="section-card p-4 mb-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 text-center">
+                            <img src="logo.png" alt="Мое фото" class="profile-image">
+                        </div>
+                        <div class="col-md-8">
+                            <h2 class="section-title" style="border-color: #6c5ce7; color: #6c5ce7;">👨‍🎨 Обо мне</h2>
+                            <p class="lead">Привет! Я профессиональный композитор и автор песен с 10-летним опытом.</p>
+                            <p>Специализируюсь на создании уникальных музыкальных произведений в различных жанрах:</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled">
+                                        <li>🎸 Поп-музыка и рок</li>
+                                        <li>🎹 Электронная музыка</li>
+                                        <li>🎻 Романтические баллады</li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled">
+                                        <li>🎤 Хип-хоп и R&B</li>
+                                        <li>🎷 Джазовые композиции</li>
+                                        <li>🎼 Классическая музыка</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p>Каждая песня создается индивидуально, с учетом ваших пожеланий и эмоций.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
